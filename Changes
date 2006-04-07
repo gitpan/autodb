@@ -1,0 +1,46 @@
+Revision history
+
+0.01  Mon Dec 22 17:28:49 PST 2003
+	- original version. 
+0.02  Tues Jan 06 17:01:12 PST 2004
+	- some code cleanup, documentation changes 
+0.03  Thu Feb 19 09:46:40 PST 2004
+	- refactored: database connection is now made at runtime
+0.04  Mon Feb 23 11:15:53 PST 2004
+	- refactored tests so that tests that need a DB connection skip if DB connection is not negotiated
+0.05  17 May 2004
+	- refactor of reconstitution code
+0.06  Mon Aug 16 14:24:43 PDT 2004
+	- major refactor of persistence handling. store() method added to store objects explicitly (implicit 
+	storage still occurs when an object is destroyed. Implicitly destroyed objects will not overwrite 
+	explicitly destroyed ones). Mosts tests have been re-written and new ones have been added to test
+	this storage handling.
+0.07  Tue Aug 17 10:52:27 PDT 2004
+	- require 5.8.2 added for perl version, manifest rebuilt to include patch files 
+0.08  Wed Sep  1 14:09:29 PDT 2004
+	- The following defects have been addressed (see also bug tracker at www.sf.net project: isbiology):
+       1016244  no persistence on (enclosed) test
+       1016246 	reformat of list sorage
+       1019348 	not all objects stored
+       1016242 	create flag not working for registry
+       1016238 	_registry_is_saved error
+       1017046 	not all objects stored
+0.09  2004/20/10
+	- optimized patch courtesy of Jenda of perl monks
+	- find now handles multiple collections in query
+0.091 2005/06/08
+	- Added option to turn off automatic indexing
+	- The following defects have been addressed (see also bug tracker at www.sf.net project: isbiology):
+		1216645 added "pass" synonym per feature request
+0.092 Tue Oct 25 16:50:04 PDT 2005
+	- Added warning to Serialize that prompts users when their data source might be wrong (evil and silent bug)
+	- added SQL limit capability to AutoDB, users can now pass a _limit_ => n, where n=max number of rows to fetch, in find args
+0.1   Wed Jan  4 15:05:53 PST 2006
+	- in Oid, added code to 'use' classes when object is fetched if not already 'used'. caution: this only works if people follow the Perl convention of placing module Foo in file Foo.pm.  Else, there's no easy way to translate a classname into a string that can be 'used'
+	- in Oid, added overload for stringification and a few related op. stringify fetches object, so  serialized objects will work as expected when used as hash key
+	- in Object, added overload declaration for objects after they've been fetched.  don't know why this is needed, but it didn't work without it
+	- in Serialize, made -transients work
+	- changed syntax of %AUTODB declaration to allow multiple collections to be specified with different keys. backwards compatible. affects code in Collection, Oid, Registration, Registry, RegistryVersion
+
+	
+	
